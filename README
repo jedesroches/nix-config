@@ -1,0 +1,11 @@
+# JDE's system configurations
+
+This repository contains the Nix code required to configure the different machines under JDE's control.
+
+## Mournblade
+
+Work X13G4, running NixOS. Nothing here yet as the config is full of secrets.
+
+## Excalibur
+
+Work MacBook, running a horribly unusable OS.
