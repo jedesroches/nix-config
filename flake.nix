@@ -11,19 +11,23 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nix-darwin, home-manager, ... }: {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."simple" = nix-darwin.lib.darwinSystem {
-      modules = [
-        ./mac-configuration.nix
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.jde = import ./mac-home-manager.nix;
-        }
-      ];
+  outputs =
+    { nix-darwin, home-manager, ... }:
+    {
+      darwinConfigurations."excalibur" = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+          ./mac-configuration.nix
+          home-manager.darwinModules.home-manager
+          {
+            users.users.jde.home = "/Users/jde";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jde = import ./mac-home-manager.nix;
+            };
+          }
+        ];
+      };
     };
-  };
 }

@@ -2,17 +2,20 @@
 
 {
   system.stateVersion = 5; # See changelog before changing.
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.hostPlatform = "x86_64-darwin";
   nix = {
     optimise.automatic = true;
     settings.experimental-features = "nix-command flakes";
     gc = {
       automatic = true;
-      randomizedDelaySec = "5min";
       options = "--delete-older-then 30d";
-      dates = "weekly";
+      interval = {
+        Weekday = 7;
+        Hour = 1;
+        Minute = 0;
+      };
     };
   };
 
-  environment.systemPackages = [ pkgs.vim pkgs.git ];
+  environment.systemPackages = [ pkgs.vim ];
 }
