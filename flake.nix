@@ -1,44 +1,29 @@
 {
   description = "System configuration for my pro macbook";
 
-  inputs = let 
-    nixpkgs-release = "24.11";
-  in {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-${nixpkgs-release}-darwin";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
 
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-${nixpkgs-release}";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-${nixpkgs-release}";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nix-darwin, ... }:
-  let
-    configuration = { pkgs, ... }: {
-      environment.systemPackages =
-        [ pkgs.vim
-        ];
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
-      # Enable alternative shell support in nix-darwin.
-      programs.fish.enable = true;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 5;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-    };
-  in
-  {
+  outputs = { nix-darwin, home-manager, ... }: {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."simple" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+        ./mac-configuration.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.jde = import ./mac-home-manager.nix;
+        }
+      ];
     };
   };
 }
