@@ -3,6 +3,7 @@
 {
   programs.fish = {
     enable = true;
+    shellInit = "fish_vi_key_bindings";
     functions = {
       fish_greeting = "";
       fish_jj_prompt = {
