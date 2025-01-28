@@ -34,10 +34,10 @@
           EOF'';
       })
     ];
-    programs = {
-      gh.enable = true;
-      home-manager.enable = true;
-    };
     stateVersion = "24.11";
+  };
+  programs = {
+    gh.enable = true;
+    home-manager.enable = true;
   };
 }
