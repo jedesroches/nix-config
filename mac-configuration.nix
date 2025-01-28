@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./services/jankyborders
     ./services/skhd
     ./services/yabai
   ];
