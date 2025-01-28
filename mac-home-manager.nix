@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./helix.nix
+    ./jj.nix
+  ];
   nix.gc = {
     automatic = true;
     frequency = "weekly";
@@ -18,5 +22,4 @@
     ];
     stateVersion = "24.11";
   };
-  programs = import ./helix.nix;
 }
