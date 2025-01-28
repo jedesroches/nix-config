@@ -20,7 +20,6 @@
           ./mac-configuration.nix
           home-manager.darwinModules.home-manager
           {
-            users.users.jde.home = "/Users/jde";
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;

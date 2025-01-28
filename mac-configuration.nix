@@ -17,5 +17,14 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.vim ];
+  # Set fish as my shell
+  users = {
+    knownUsers = [ "jde" ];
+    users.jde = {
+      home = "/Users/jde";
+      shell = pkgs.fish;
+      uid = 501;
+    };
+  };
+  programs.fish.enable = true;
 }
