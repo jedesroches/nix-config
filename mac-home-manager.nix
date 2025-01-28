@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./programs/alacritty
     ./programs/direnv
     ./programs/helix
     ./programs/jujutsu
