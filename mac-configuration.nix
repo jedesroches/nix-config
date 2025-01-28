@@ -17,7 +17,8 @@
     };
   };
 
-  # Set fish as my shell
+  security.pam.enableSudoTouchIdAuth = true;
+
   users = {
     knownUsers = [ "jde" ];
     users.jde = {
