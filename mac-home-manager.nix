@@ -6,6 +6,7 @@
     ./git.nix
     ./helix.nix
     ./jj.nix
+    ./programs/fish
     ./scripts/jj-gh-pr
     ./scripts/sbb
   ];
