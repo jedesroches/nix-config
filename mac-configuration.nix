@@ -7,6 +7,12 @@
   ];
 
   system.stateVersion = 5; # See changelog before changing.
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = true;
+    swapLeftCtrlAndFn = true;
+  };
+
   nixpkgs.hostPlatform = "x86_64-darwin";
   nix = {
     optimise.automatic = true;
