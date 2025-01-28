@@ -16,6 +16,18 @@
     options = "--delete-older-than 30d";
   };
   home = {
+    stateVersion = "24.11"; # XXX DNE - RTFM.
+    file.ghosttyConfig = {
+      enable = true;
+      executable = false;
+      target = ".config/ghostty/config";
+      text = ''
+      window-decoration = false
+      window-padding-x = 0
+      window-padding-y = 0
+      auto-update = download
+      '';
+    };
     packages = with pkgs; [
       ack
       glow
@@ -35,7 +47,6 @@
           EOF'';
       })
     ];
-    stateVersion = "24.11";
   };
   programs = {
     home-manager.enable = true;
