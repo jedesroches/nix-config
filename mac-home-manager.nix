@@ -15,7 +15,6 @@
       git
       glow
       shellcheck
-      jujutsu
       jq
       nil
       nixfmt-rfc-style
