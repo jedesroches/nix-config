@@ -9,3 +9,12 @@ Work X13G4, running NixOS. Nothing here yet as the config is full of secrets.
 ## Excalibur
 
 Work MacBook, running a horribly unusable OS.
+
+## Code structure
+
+- The flake serves as an entrypoint to call the proper files for the host.
+- Each host has a system configuration file which contains OS-wide configuration (KISS)
+- Each host has a home-manager file which contains my user's configuration: this should
+  be kept as minimal as possible and use shared reusable modules.
+- `programs/` contains configurations for a specific program.
+- `scripts/` contains shell scripts and their default.nix file.

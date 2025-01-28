@@ -2,11 +2,11 @@
 
 {
   imports = [
-    ./direnv.nix
-    ./git.nix
-    ./helix.nix
-    ./jj.nix
+    ./programs/direnv
+    ./programs/helix
+    ./programs/jujutsu
     ./programs/fish
+    ./programs/git
     ./scripts/jj-gh-pr
     ./scripts/sbb
   ];
@@ -19,6 +19,7 @@
     packages = with pkgs; [
       ack
       glow
+      gh
       shellcheck
       jq
       nil
@@ -37,7 +38,6 @@
     stateVersion = "24.11";
   };
   programs = {
-    gh.enable = true;
     home-manager.enable = true;
   };
 }
