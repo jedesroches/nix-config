@@ -18,6 +18,11 @@
   };
   home = {
     stateVersion = "24.11"; # XXX DNE - RTFM.
+    file.hushlogin = {
+      enable = true;
+      target = ".hushlogin";
+      text = "";
+    };
     packages = with pkgs; [
       ack
       glow
