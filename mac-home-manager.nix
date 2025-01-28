@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./direnv.nix
     ./helix.nix
     ./jj.nix
   ];
