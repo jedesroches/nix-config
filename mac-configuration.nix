@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./services/yabai
+  ];
+
   system.stateVersion = 5; # See changelog before changing.
   nixpkgs.hostPlatform = "x86_64-darwin";
   nix = {
