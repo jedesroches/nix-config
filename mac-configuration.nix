@@ -15,6 +15,9 @@
 
   nixpkgs.hostPlatform = "x86_64-darwin";
   nix = {
+    # This allows <nixpkgs> to point to our input
+    nixPath = [ "nixpkgs=${pkgs.path}" ];
+
     optimise.automatic = true;
     settings.experimental-features = "nix-command flakes";
     gc = {
