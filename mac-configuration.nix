@@ -14,6 +14,35 @@
     swapLeftCtrlAndFn = true;
   };
 
+  system.defaults = {
+    NSGlobalDomain = {
+      AppleInterfaceStyle = "Dark";
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      AppleShowScrollBars = "WhenScrolling";
+      _HIHideMenuBar = true;
+      "com.apple.mouse.tapBehavior" = 1;
+      "com.apple.swipescrolldirection" = false;
+    };
+    WindowManager = {
+      AutoHide = false;
+      EnableTilingByEdgeDrag = false;
+      EnableTiledWindowMargins = false;
+      GloballyEnabled = false;
+    };
+
+    controlcenter = {
+      AirDrop = false;
+      BatteryShowPercentage = true;
+      FocusModes = false;
+    };
+
+    dock = {
+      autohide = true;
+      orientation = "left";
+    };
+  };
+
   nixpkgs.hostPlatform = "x86_64-darwin";
   nix = {
     # This allows <nixpkgs> to point to our input
