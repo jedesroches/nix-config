@@ -1,5 +1,9 @@
 { ... }:
 
+## All space-related commands require the system integrity proctection to be
+## disabled, which I am not going to do on a work-provided and enrolled
+## computer. :sad-face:
+
 {
   services.yabai = {
     enable = true;
