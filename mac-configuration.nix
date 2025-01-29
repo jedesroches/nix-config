@@ -3,6 +3,7 @@
 {
   imports = [
     ./services/jankyborders
+    ./services/sketchybar
     ./services/skhd
     ./services/yabai
   ];

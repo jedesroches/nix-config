@@ -9,6 +9,7 @@
     enable = true;
     config = {
       active_window_opacity = 1.0;
+      external_bar = "all:20:0";
       focus_follows_mouse = "autofocus";
       layout = "bsp";
       normal_window_opacity = 0.9;
