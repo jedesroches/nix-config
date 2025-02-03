@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    difftastic
+  ];
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -10,7 +13,9 @@
       };
       ui = {
         default-command = "status";
-        diff-format = "git";
+        diff = {
+          tool = ["difft" "--color=always" "$left" "$right"];
+        };
         pager = "less -FRX";
       };
       revsets = {
