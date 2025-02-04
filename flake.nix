@@ -17,15 +17,9 @@
       darwinConfigurations."excalibur" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
-          ./mac-configuration.nix
           home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.jde = import ./mac-home-manager.nix;
-            };
-          }
+          ./mac-configuration.nix
+          ./mac-home-manager.nix
         ];
       };
     };
