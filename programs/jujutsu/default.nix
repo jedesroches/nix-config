@@ -12,6 +12,9 @@
           name = "Joachim Desroches";
           email = "jdesroches@kleis.ch";
         };
+        git = {
+          push-bookmark-prefix = "jde/push-";
+        };
         ui = {
           default-command = "status";
           diff = {
@@ -35,7 +38,7 @@
         jjd = "jj diff";
         jje = "jj edit";
         jjl = "jj log";
-        jjla = "jj log -r 'trunk()::(@ | tracked_remote_bookmarks())'";
+        jjla = "jj log -r 'trunk():: | ancestors(remote_bookmarks()::, 2) | @";
         jjw = "jj desc -m ";
       };
     };
