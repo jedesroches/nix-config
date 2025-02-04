@@ -14,7 +14,7 @@
   nix.gc = {
     automatic = true;
     frequency = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 7d";
   };
   home = {
     stateVersion = "24.11"; # XXX DNE - RTFM.
