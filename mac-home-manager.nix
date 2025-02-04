@@ -45,5 +45,6 @@
   };
   programs = {
     home-manager.enable = true;
+    bat.enable = true;
   };
 }
