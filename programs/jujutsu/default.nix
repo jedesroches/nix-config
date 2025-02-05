@@ -12,7 +12,6 @@
         };
         fix = {
           tools = {
-            # TODO: checkout treefmt
             gofmt = {
               command = [
                 "gofmt"
@@ -56,9 +55,8 @@
           };
           pager = "less -FRX";
         };
-        revsets.log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
-
         merge-tools.vimdiff.merge-tool-edits-conflict-markers = true;
+        revsets.log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
       };
     };
     fish = {
