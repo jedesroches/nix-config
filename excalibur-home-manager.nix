@@ -16,6 +16,7 @@
         ./programs/mpv
         ./scripts/jj-gh-pr
         ./scripts/sbb
+        ./scripts/newshell
       ];
 
       nix.gc = {
@@ -56,16 +57,6 @@
           gh
           jq
           mpv
-          (writeShellApplication {
-            name = "newshell";
-            text = ''
-              set -eux
-
-              cat << EOF > shell.nix
-              let pkgs = import <nixpkgs> {}; 
-              in pkgs.mkShell { buildInputs = with pkgs; []; }
-              EOF'';
-          })
         ];
       };
 
