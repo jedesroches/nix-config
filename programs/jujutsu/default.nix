@@ -56,9 +56,8 @@
           };
           pager = "less -FRX";
         };
-        revsets = {
-          log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
-        };
+        revsets.log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
+
         merge-tools.vimdiff.merge-tool-edits-conflict-markers = true;
       };
     };
@@ -68,9 +67,9 @@
         jjd = "jj diff";
         jje = "jj edit";
         jjf = "jj git fetch";
-        jjp = "jj git push";
-        jjl = "jj log";
         jjla = "jj log -r '@ | ancestors(remote_bookmarks()::, 2) | trunk()::'";
+        jjl = "jj log";
+        jjp = "jj git push";
         jjr = "jj rebase";
         jjrm = "jj rebase -d main";
         jjw = "jj desc -m ";
