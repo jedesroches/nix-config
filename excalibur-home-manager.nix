@@ -23,10 +23,22 @@
         options = "--delete-older-than 7d";
       };
 
-      programs = {
-        home-manager.enable = true;
-        bat.enable = true;
-      };
+      programs =
+        with builtins;
+        let
+          programs = [
+            "bat"
+            "home-manager"
+            "mpv"
+            "nix-index"
+          ];
+        in
+        listToAttrs (
+          map (p: {
+            name = p;
+            value = { enable = true; };
+          }) programs
+        );
 
       home = {
         stateVersion = "24.11"; # XXX DNE - RTFM.
@@ -42,6 +54,7 @@
           gh
           shellcheck
           jq
+          mpv
           nil
           nixfmt-rfc-style
           (writeShellApplication {

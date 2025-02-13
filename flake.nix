@@ -18,8 +18,8 @@
         system = "x86_64-darwin";
         modules = [
           home-manager.darwinModules.home-manager
-          ./mac-configuration.nix
-          ./mac-home-manager.nix
+          ./excalibur-configuration.nix
+          ./excalibur-home-manager.nix
         ];
       };
     };
