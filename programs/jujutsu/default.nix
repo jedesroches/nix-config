@@ -38,7 +38,7 @@
         jjd = "jj diff";
         jje = "jj edit";
         jjl = "jj log";
-        jjla = "jj log -r 'trunk():: | ancestors(remote_bookmarks()::, 2) | @";
+        jjla = "jj log -r 'trunk():: | ancestors(remote_bookmarks()::, 2) | @'";
         jjw = "jj desc -m ";
       };
     };
