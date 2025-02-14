@@ -16,7 +16,7 @@
         init.defaultBranch = "main";
         rebase.autoSquash = true;
       };
-      ignores = [ ".direnv/" ];
+      ignores = [ ".direnv/" ".local/" ];
       userEmail = "jdesroches@kleis.ch";
       userName = "Joachim Desroches";
     };
