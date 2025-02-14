@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    difftastic
-  ];
+  home.packages = with pkgs; [ difftastic ];
   programs = {
     jujutsu = {
       enable = true;
@@ -16,12 +14,19 @@
           tools = {
             # TODO: checkout treefmt
             gofmt = {
-              command = ["gofmt" "-s"];
-              patterns = ["glob:'**/*.go'"];
+              command = [
+                "gofmt"
+                "-s"
+              ];
+              patterns = [ "glob:'**/*.go'" ];
             };
             nixfmt = {
-              command = ["nixfmt" "-svf" "$path"];
-              patterns = ["glob:'**/*.nix'"];
+              command = [
+                "nixfmt"
+                "-svf"
+                "$path"
+              ];
+              patterns = [ "glob:'**/*.nix'" ];
             };
           };
         };
@@ -43,6 +48,7 @@
         revsets = {
           log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
         };
+        merge-tools.vimdiff.merge-tool-edits-conflict-markers = true;
       };
     };
     fish = {
