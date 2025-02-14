@@ -12,6 +12,19 @@
           name = "Joachim Desroches";
           email = "jdesroches@kleis.ch";
         };
+        fix = {
+          tools = {
+            # TODO: checkout treefmt
+            gofmt = {
+              command = ["gofmt" "-s"];
+              patterns = ["glob:'**/*.go'"];
+            };
+            nixfmt = {
+              command = ["nixfmt" "-svf" "$path"];
+              patterns = ["glob:'**/*.nix'"];
+            };
+          };
+        };
         git = {
           push-bookmark-prefix = "jde/push-";
         };
@@ -37,8 +50,9 @@
         jjb = "jj bookmark";
         jjd = "jj diff";
         jje = "jj edit";
+        jjf = "jj file";
         jjl = "jj log";
-        jjla = "jj log -r 'trunk():: | ancestors(remote_bookmarks()::, 2) | @'";
+        jjla = "jj log -r '@ | ancestors(remote_bookmarks()::, 2) | trunk()::'";
         jjw = "jj desc -m ";
       };
     };
