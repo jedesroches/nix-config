@@ -12,8 +12,17 @@
   };
 
   outputs =
-    { nix-darwin, home-manager, ... }:
     {
+      nix-darwin,
+      home-manager,
+      nixpkgs,
+      ...
+    }:
+    {
+      nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
+        system = "x86_64";
+        modules = [ ];
+      };
       darwinConfigurations."excalibur" = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
