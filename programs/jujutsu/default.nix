@@ -56,7 +56,8 @@
         jjb = "jj bookmark";
         jjd = "jj diff";
         jje = "jj edit";
-        jjf = "jj file";
+        jjf = "jj git fetch";
+        jjp = "jj git push";
         jjl = "jj log";
         jjla = "jj log -r '@ | ancestors(remote_bookmarks()::, 2) | trunk()::'";
         jjw = "jj desc -m ";
