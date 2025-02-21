@@ -7,40 +7,42 @@
     ./services/skhd
     ./services/yabai
   ];
+  system = {
 
-  system.stateVersion = 5; # See changelog before changing.
-  system.keyboard = {
-    enableKeyMapping = true;
-    remapCapsLockToEscape = true;
-    swapLeftCtrlAndFn = true;
-  };
-
-  system.defaults = {
-    NSGlobalDomain = {
-      AppleInterfaceStyle = "Dark";
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = true;
-      AppleShowScrollBars = "WhenScrolling";
-      _HIHideMenuBar = true;
-      "com.apple.mouse.tapBehavior" = 1;
-      "com.apple.swipescrolldirection" = false;
-    };
-    WindowManager = {
-      AutoHide = false;
-      EnableTilingByEdgeDrag = false;
-      EnableTiledWindowMargins = false;
-      GloballyEnabled = false;
+    stateVersion = 5; # See changelog before changing.
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+      swapLeftCtrlAndFn = true;
     };
 
-    controlcenter = {
-      AirDrop = false;
-      BatteryShowPercentage = true;
-      FocusModes = false;
-    };
+    defaults = {
+      NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        AppleShowScrollBars = "WhenScrolling";
+        _HIHideMenuBar = true;
+        "com.apple.mouse.tapBehavior" = 1;
+        "com.apple.swipescrolldirection" = false;
+      };
+      WindowManager = {
+        AutoHide = false;
+        EnableTilingByEdgeDrag = false;
+        EnableTiledWindowMargins = false;
+        GloballyEnabled = false;
+      };
 
-    dock = {
-      autohide = true;
-      orientation = "left";
+      controlcenter = {
+        AirDrop = false;
+        BatteryShowPercentage = true;
+        FocusModes = false;
+      };
+
+      dock = {
+        autohide = true;
+        orientation = "left";
+      };
     };
   };
 

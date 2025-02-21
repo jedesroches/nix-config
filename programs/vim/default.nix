@@ -1,5 +1,5 @@
 # I don't use vim as a daily driver, but vimdiff is useful for conflicts
-{ ... }:
+_:
 
 {
 

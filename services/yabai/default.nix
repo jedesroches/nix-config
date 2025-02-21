@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 ## All space-related commands require the system integrity proctection to be
 ## disabled, which I am not going to do on a work-provided and enrolled
@@ -35,6 +35,6 @@
     extraConfig = ''
       yabai -m rule --add app='^System Settings$' manage=off
       yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
-  '';
+    '';
   };
 }
