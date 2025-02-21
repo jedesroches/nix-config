@@ -36,7 +36,9 @@
         listToAttrs (
           map (p: {
             name = p;
-            value = { enable = true; };
+            value = {
+              enable = true;
+            };
           }) programs
         );
 
@@ -52,11 +54,8 @@
           ack
           glow
           gh
-          shellcheck
           jq
           mpv
-          nil
-          nixfmt-rfc-style
           (writeShellApplication {
             name = "newshell";
             text = ''

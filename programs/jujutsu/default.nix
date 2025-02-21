@@ -28,6 +28,14 @@
               ];
               patterns = [ "glob:'**/*.nix'" ];
             };
+            statix = {
+              command = [
+                "statix"
+                "fix"
+                "-s"
+              ];
+              patterns = [ "glob:'**/*.nix'" ];
+            };
           };
         };
         git = {

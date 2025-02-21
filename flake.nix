@@ -20,7 +20,7 @@
     }:
     {
       nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
-        system = "x86_64";
+        system = "x86_64-linux";
         modules = [ ];
       };
       darwinConfigurations."excalibur" = nix-darwin.lib.darwinSystem {
