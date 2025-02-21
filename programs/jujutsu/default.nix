@@ -60,6 +60,8 @@
         jjp = "jj git push";
         jjl = "jj log";
         jjla = "jj log -r '@ | ancestors(remote_bookmarks()::, 2) | trunk()::'";
+        jjr = "jj rebase";
+        jjrm = "jj rebase -d main";
         jjw = "jj desc -m ";
       };
     };
