@@ -9,10 +9,11 @@
       imports = [
         ./programs/alacritty
         ./programs/direnv
-        ./programs/helix
-        ./programs/jujutsu
         ./programs/fish
         ./programs/git
+        ./programs/helix
+        ./programs/jujutsu
+        ./programs/mpv
         ./scripts/jj-gh-pr
         ./scripts/sbb
       ];
@@ -29,7 +30,6 @@
           programs = [
             "bat"
             "home-manager"
-            "mpv"
             "nix-index"
           ];
         in
