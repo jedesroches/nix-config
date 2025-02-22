@@ -52,6 +52,9 @@
             inherit system;
             overlays = [ self.overlays.unstable ];
           };
+          specialArgs = {
+            inherit nixpkgs;
+          };
           modules = [
             home-manager.darwinModules.home-manager
             ./excalibur-configuration.nix

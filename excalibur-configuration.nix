@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ nixpkgs, pkgs, ... }:
 
 {
   imports = [
@@ -58,8 +58,10 @@
 
   nixpkgs.hostPlatform = "x86_64-darwin";
   nix = {
+    # Make `nix run nixpkgs#...` use the same nixpkgs as this flake's
+    registry.nixpkgs.flake = nixpkgs;
     # This allows <nixpkgs> to point to our input
-    nixPath = [ "nixpkgs=${pkgs.path}" ];
+    nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
 
     optimise.automatic = true;
     settings = {
