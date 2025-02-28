@@ -12,7 +12,7 @@
       settings = {
         user = {
           name = "Joachim Desroches";
-          email = "jdesroches@kleis.ch";
+          email = "jodesroches@pictet.ch";
         };
         fix = {
           tools = {
