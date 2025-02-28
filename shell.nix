@@ -7,4 +7,9 @@ pkgs.mkShell {
     statix
     nixfmt-rfc-style
   ];
+
+  shellHook = ''
+    ssh-add -D
+    ssh-add ~/.ssh/kleis-gh
+  '';
 }

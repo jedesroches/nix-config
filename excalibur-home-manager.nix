@@ -25,30 +25,18 @@
         options = "--delete-older-than 7d";
       };
 
-      programs =
-        with builtins;
-        let
-          programs = [
-            "bat"
-            "home-manager"
-            "nix-index"
-          ];
-        in
-        listToAttrs (
-          map (p: {
-            name = p;
-            value = {
-              enable = true;
-            };
-          }) programs
-        );
+      programs = {
+        bat.enable = true;
+        home-manager.enable = true;
+        nix-index.enable = true;
+      };
 
       home = {
         stateVersion = "24.11"; # XXX DNE - RTFM.
         file.hushlogin = {
           enable = true;
           target = ".hushlogin";
-          text = "";
+          text = "hush";
         };
 
         packages = with pkgs; [
@@ -57,6 +45,10 @@
           gh
           jq
           mpv
+          shellcheck
+          bash-language-server
+          terraform-ls
+          yaml-language-server
         ];
       };
 
