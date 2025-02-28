@@ -51,6 +51,9 @@
               "$right"
             ];
           };
+          movement = {
+            edit = true;
+          };
           pager = "less -FRX";
         };
         revsets = {
