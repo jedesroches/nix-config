@@ -1,12 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, unstablePkgs, ... }:
 
 {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     users.jde = {
-
       imports = [
+        { _module.args = { inherit unstablePkgs; }; }
         ./programs/alacritty
         ./programs/direnv
         ./programs/fish
