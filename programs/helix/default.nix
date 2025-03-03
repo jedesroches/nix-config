@@ -41,6 +41,18 @@
       };
     };
     languages = {
+      language-server = {
+        nil = {
+          command = "nil";
+          config = {
+            nil = {
+              formatting = {
+                command = [ "nixfmt" ];
+              };
+            };
+          };
+        };
+      };
       language = [
         {
           name = "jjdescription";
@@ -48,6 +60,11 @@
           file-types = [ "jjdescription" ];
           text-width = 72;
           rulers = [ 72 ];
+        }
+
+        {
+          name = "nix";
+          auto-format = true;
         }
       ];
       grammar = [
