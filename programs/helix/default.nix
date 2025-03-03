@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 
 {
   programs.helix = {
@@ -40,5 +40,51 @@ _:
         space.q = ":q";
       };
     };
+    languages = {
+      language = [
+        {
+          name = "jjdescription";
+          scope = "source.jjdescription";
+          file-types = [ "jjdescription" ];
+          text-width = 72;
+          rulers = [ 72 ];
+        }
+      ];
+      grammar = [
+        {
+          name = "jjdescription";
+          source = {
+            git = "https://github.com/kareigu/tree-sitter-jjdescription";
+            rev = "dev";
+          };
+        }
+      ];
+    };
+  };
+  xdg.configFile."helix-highlights-jj" = {
+    enable = true;
+    executable = false;
+    source =
+      pkgs.fetchFromGitHub {
+        owner = "kareigu";
+        repo = "tree-sitter-jjdescription";
+        rev = "dev";
+        hash = "sha256-HPghz3mOukXrY0KQllOR7Kkl2U3+ukPBrXWKnJCwsqI=";
+      }
+      + "/queries/highlights-hx.scm";
+    target = "helix/runtime/queries/jjdescription/highlights.scm";
+  };
+  xdg.configFile."helix-injections-jj" = {
+    enable = true;
+    executable = false;
+    source =
+      pkgs.fetchFromGitHub {
+        owner = "kareigu";
+        repo = "tree-sitter-jjdescription";
+        rev = "dev";
+        hash = "sha256-HPghz3mOukXrY0KQllOR7Kkl2U3+ukPBrXWKnJCwsqI=";
+      }
+      + "/queries/injections.scm";
+    target = "helix/runtime/queries/jjdescription/injections.scm";
   };
 }

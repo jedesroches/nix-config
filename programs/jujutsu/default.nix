@@ -58,12 +58,13 @@
         merge-tools.vimdiff.merge-tool-edits-conflict-markers = true;
         revsets.log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
         templates = {
+          # NOTE: this requires jj > 0.25.0
           draft_commit_description = ''
             concat(
               description,
               surround(
                 "\nJJ: This commit contains the following changes:\n", "",
-                indent("JJ:     ", diff.stat(72)),
+                indent("JJ:     ", diff.summary()),
               ),
               "\nJJ: ignore-rest\n",
               diff.git(),
