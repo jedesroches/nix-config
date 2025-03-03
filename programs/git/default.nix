@@ -1,10 +1,12 @@
-{ ... }:
+_:
 
 {
   programs = {
     git = {
       enable = true;
-      aliases = { unstage = "reset HEAD --"; };
+      aliases = {
+        unstage = "reset HEAD --";
+      };
       extraConfig = {
         commit.verbose = true;
         core = {
@@ -16,7 +18,11 @@
         init.defaultBranch = "main";
         rebase.autoSquash = true;
       };
-      ignores = [ ".direnv/" ".local/" ];
+      ignores = [
+        ".direnv/"
+        ".envrc"
+        ".local/"
+      ];
       userEmail = "jdesroches@kleis.ch";
       userName = "Joachim Desroches";
     };
@@ -35,8 +41,7 @@
       };
       functions = {
         gignore.body = ''for ign in $argv; echo "$ign" >> .gitignore; end '';
-        ginit.body =
-          ''git init . && git commit --allow-empty -m "Initial commit"'';
+        ginit.body = ''git init . && git commit --allow-empty -m "Initial commit"'';
       };
     };
   };
