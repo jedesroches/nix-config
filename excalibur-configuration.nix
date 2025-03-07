@@ -25,10 +25,13 @@
 
     defaults = {
       NSGlobalDomain = {
+        AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark";
+        AppleMeasurementUnits = "Centimeters";
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
         AppleShowScrollBars = "WhenScrolling";
+        AppleTemperatureUnit = "Celsius";
         _HIHideMenuBar = true;
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.swipescrolldirection" = false;
