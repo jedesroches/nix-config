@@ -21,10 +21,10 @@
       ...
     }:
     {
-      nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ];
-      };
+      # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [ ];
+      # };
       darwinConfigurations."excalibur" =
         let
           system = "x86_64-darwin";
@@ -39,6 +39,22 @@
             ./excalibur-configuration.nix
             ./excalibur-home-manager.nix
           ];
+        };
+      devShell.x86_64-darwin =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+        in
+        pkgs.mkShell {
+          name = "nix-config";
+          packages = with pkgs; [
+            nil
+            statix
+            nixfmt-rfc-style
+          ];
+          shellHook = ''
+            ssh-add -D
+            ssh-add ~/.ssh/kleis-gh
+          '';
         };
     };
 }
