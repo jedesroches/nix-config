@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 
 {
   programs.fish = {
@@ -19,5 +19,15 @@ _:
         body = builtins.readFile ./fish_prompt.fish;
       };
     };
+    plugins = [
+      {
+        name = "z";
+        src = pkgs.fishPlugins.z.src;
+      }
+      {
+        name = "sponge";
+        src = pkgs.fishPlugins.sponge.src;
+      }
+    ];
   };
 }
