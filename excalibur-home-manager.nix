@@ -49,6 +49,20 @@
           bash-language-server
           terraform-ls
           yaml-language-server
+          (writeShellApplication {
+            name = "cycle-ssh";
+            text = ''
+              if ssh-add -L | grep -q kleis;
+              then
+                KEY="$HOME/.ssh/id_ed25519"
+              else
+                KEY="$HOME/.ssh/kleis-gh"
+              fi
+
+              ssh-add -D
+              ssh-add "$KEY"
+            '';
+          })
         ];
       };
 
