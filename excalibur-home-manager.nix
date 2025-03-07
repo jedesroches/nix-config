@@ -41,12 +41,14 @@
 
         packages = with pkgs; [
           ack
-          glow
+          bash-language-server
           gh
           jq
           mpv
+          nil
+          nixfmt-rfc-style
           shellcheck
-          bash-language-server
+          statix
           terraform-ls
           yaml-language-server
           (writeShellApplication {
