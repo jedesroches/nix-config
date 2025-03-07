@@ -59,7 +59,13 @@
     nixPath = [ "nixpkgs=${pkgs.path}" ];
 
     optimise.automatic = true;
-    settings.experimental-features = "nix-command flakes";
+    settings = {
+      experimental-features = "nix-command flakes";
+      trusted-users = [
+        "root"
+        "jde"
+      ];
+    };
     gc = {
       automatic = true;
       options = "--delete-older-then 30d";
