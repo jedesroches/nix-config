@@ -9,7 +9,9 @@
 
         cat << EOF > shell.nix
         let pkgs = import <nixpkgs> {};
-        in pkgs.mkShell { buildInputs = with pkgs; []; }
+        in pkgs.mkShell { buildInputs = with pkgs; [
+          $(for pkg in "$@"; do echo "$pkg"; done)
+        ]; }
         EOF'';
     })
   ];
