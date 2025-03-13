@@ -4,6 +4,9 @@
   programs.fish = {
     enable = true;
     shellInit = "fish_vi_key_bindings";
+    shellAbbrs = {
+      mail = "neomutt";
+    };
     functions = {
       fish_greeting = "";
       fish_jj_prompt = {
