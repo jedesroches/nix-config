@@ -71,7 +71,7 @@
     };
     gc = {
       automatic = true;
-      options = "--delete-older-then 30d";
+      options = "--delete-older-than 30d";
       interval = {
         Weekday = 7;
         Hour = 1;
