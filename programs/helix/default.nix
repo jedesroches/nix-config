@@ -53,6 +53,14 @@
             };
           };
         };
+        tinymist = {
+          command = "tinymist";
+          config = {
+            tinymist = {
+              formatterMode = "typstyle";
+            };
+          };
+        };
       };
       language = [
         {
@@ -65,6 +73,11 @@
 
         {
           name = "nix";
+          auto-format = true;
+        }
+
+        {
+          name = "typst";
           auto-format = true;
         }
       ];
