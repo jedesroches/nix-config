@@ -58,21 +58,35 @@
             ./excalibur-home-manager.nix
           ];
         };
-      devShells.x86_64-darwin.default =
-        let
-          pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-        in
-        pkgs.mkShell {
-          name = "nix-config";
-          packages = with pkgs; [
-            nil
-            statix
-            nixfmt-rfc-style
-          ];
-          shellHook = ''
-            ssh-add -D
-            ssh-add ~/.ssh/kleis-gh
-          '';
-        };
+      devShells = {
+        x86_64-linux.default =
+          let
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          in
+          pkgs.mkShell {
+            name = "nix-config";
+            packages = with pkgs; [
+              nil
+              statix
+              nixfmt-rfc-style
+            ];
+          };
+        x86_64-darwin.default =
+          let
+            pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+          in
+          pkgs.mkShell {
+            name = "nix-config";
+            packages = with pkgs; [
+              nil
+              statix
+              nixfmt-rfc-style
+            ];
+            shellHook = ''
+              ssh-add -D
+              ssh-add ~/.ssh/kleis-gh
+            '';
+          };
+      };
     };
 }
