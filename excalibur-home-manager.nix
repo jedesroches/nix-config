@@ -10,6 +10,7 @@
         ./programs/direnv
         ./programs/fish
         ./programs/git
+        ./programs/gh
         ./programs/helix
         ./programs/jujutsu
         ./programs/mpv
@@ -41,7 +42,6 @@
         packages = with pkgs; [
           ack
           bash-language-server
-          gh
           jq
           mpv
           nil
