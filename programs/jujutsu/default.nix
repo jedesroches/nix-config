@@ -1,14 +1,14 @@
-{ pkgs, unstablePkgs, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.difftastic
-    unstablePkgs.jjui
+  home.packages = with pkgs; [
+    difftastic
+    unstable.jjui
   ];
   programs = {
     jujutsu = {
       enable = true;
-      package = unstablePkgs.jujutsu;
+      package = pkgs.unstable.jujutsu;
       settings = {
         user = {
           name = "Joachim Desroches";

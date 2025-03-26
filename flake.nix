@@ -1,3 +1,13 @@
+# NOTE
+# Still learning about how all of this composes nicely. Things to keep in mind:
+# - https://zimbatm.com/notes/1000-instances-of-nixpkgs
+# - https://zimbatm.com/notes/nixpkgs-unfree
+# - We think we want everything to be the same across machines, but different
+#   architectures make that hard: we need a separate instance of nixpkgs for
+#   darwin than for the rest (binary builds are different) and that in turn
+#   means two copies of home-manager depending on the arch. Thankfully,
+#   inputs are evaluated lazily.
+
 {
   description = "System configuration for my pro macbook";
 
@@ -14,6 +24,7 @@
 
   outputs =
     {
+      self,
       nix-darwin,
       home-manager,
       nixpkgs,
@@ -21,6 +32,12 @@
       ...
     }:
     {
+      overlays.unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = final.system;
+          config.allowUnfree = true;
+        };
+      };
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
       #   system = "x86_64-linux";
       #   modules = [ ];
@@ -31,8 +48,9 @@
         in
         nix-darwin.lib.darwinSystem {
           inherit system;
-          specialArgs = {
-            unstablePkgs = nixpkgs-unstable.legacyPackages."${system}";
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.unstable ];
           };
           modules = [
             home-manager.darwinModules.home-manager
@@ -40,7 +58,7 @@
             ./excalibur-home-manager.nix
           ];
         };
-      devShell.x86_64-darwin =
+      devShells.x86_64-darwin.default =
         let
           pkgs = nixpkgs.legacyPackages.x86_64-darwin;
         in

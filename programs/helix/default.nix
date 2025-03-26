@@ -1,9 +1,9 @@
-{ pkgs, unstablePkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.helix = {
     enable = true;
-    package = unstablePkgs.helix;
+    package = pkgs.unstable.helix;
     defaultEditor = true;
     settings = {
       theme = "ayu_evolve";
