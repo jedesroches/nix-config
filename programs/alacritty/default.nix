@@ -1,13 +1,22 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    unstable.nerd-fonts.roboto-mono
+  ];
   programs.alacritty = {
     enable = true;
     settings = {
       window.decorations = "none";
-      font.size = 14;
+      font = {
+        size = 14;
+        normal = {
+          family = "RobotoMono Nerd Font";
+          style = "Regular";
+        };
+      };
       colors = {
-        primary = {          
+        primary = {
           foreground = "#f2f2f2";
           background = "#000000";
         };
