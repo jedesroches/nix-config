@@ -91,6 +91,15 @@
         }
 
         {
+          name = "python";
+          auto-format = true;
+          language-servers = [
+            "basedpyright"
+            "ruff"
+          ];
+        }
+
+        {
           name = "typst";
           auto-format = true;
         }
