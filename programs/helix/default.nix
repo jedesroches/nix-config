@@ -43,6 +43,20 @@
     };
     languages = {
       language-server = {
+        # Fix for golangci-lint-langserver/issues/51
+        # Remove once #52 is merged.
+        golangci-lint-lsp = {
+          config = {
+            command = [
+              "golangci-lint"
+              "run"
+              "--output.json.path"
+              "stdout"
+              "--show-stats=false"
+              "--issues-exit-code=1"
+            ];
+          };
+        };
         nil = {
           command = "nil";
           config = {
