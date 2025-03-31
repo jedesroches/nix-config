@@ -1,22 +1,18 @@
 {
-  nixpkgs,
   pkgs,
-  lib,
+  config,
   ...
 }:
 
 {
-  options = {
-    username = lib.mkOption {
-      type = lib.types.string;
-    };
-  };
+
   imports = [
-    ./services/jankyborders
-    ./services/sketchybar
-    ./services/skhd
-    ./services/yabai
+    ../services/jankyborders
+    ../services/sketchybar
+    ../services/skhd
+    ../services/yabai
   ];
+
   config = {
     system = {
       stateVersion = 5; # See changelog before changing.
@@ -69,17 +65,12 @@
 
     nixpkgs.hostPlatform = "x86_64-darwin";
     nix = {
-      # Make `nix run nixpkgs#...` use the same nixpkgs as this flake's
-      registry.nixpkgs.flake = nixpkgs;
-      # This allows <nixpkgs> to point to our input
-      nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
-
       optimise.automatic = true;
       settings = {
         experimental-features = "nix-command flakes";
         trusted-users = [
           "root"
-          "jde"
+          config.me.username
         ];
       };
       gc = {
@@ -96,9 +87,9 @@
     security.pam.enableSudoTouchIdAuth = true;
 
     users = {
-      knownUsers = [ "jde" ];
+      knownUsers = [ config.me.username ];
       users.jde = {
-        home = "/Users/jde";
+        home = "/Users/" + config.me.username;
         shell = pkgs.fish;
         uid = 501;
       };

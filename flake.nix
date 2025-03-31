@@ -8,6 +8,9 @@
 #   means two copies of home-manager depending on the arch. Thankfully,
 #   inputs are evaluated lazily.
 
+# TODO
+# - Is ROCm support useful for my x13 ?
+
 {
   description = "System configuration for my pro macbook";
 
@@ -20,17 +23,29 @@
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nix-darwin,
       home-manager,
+      stylix,
       nixpkgs,
       nixpkgs-unstable,
       ...
     }:
+    let
+      darwin = "x86_64-darwin";
+      architectures = [
+        darwin
+        "x86_64-linux"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs architectures;
+    in
     {
       overlays.unstable = final: prev: {
         unstable = import nixpkgs-unstable {
@@ -38,58 +53,55 @@
           config.allowUnfree = true;
         };
       };
+
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
       #   system = "x86_64-linux";
       #   modules = [ ];
       # };
-      darwinConfigurations."excalibur" =
-        let
-          system = "x86_64-darwin";
-        in
-        nix-darwin.lib.darwinSystem {
-          inherit system;
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.unstable ];
-          };
-          specialArgs = {
-            inherit nixpkgs;
-          };
-          modules = [
-            home-manager.darwinModules.home-manager
-            ./excalibur-configuration.nix
-            ./excalibur-home-manager.nix
-          ];
+
+      darwinConfigurations."excalibur" = nix-darwin.lib.darwinSystem {
+        system = darwin;
+
+        pkgs = import nixpkgs {
+          system = darwin;
+          overlays = [ self.overlays.unstable ];
         };
-      devShells = {
-        x86_64-linux.default =
-          let
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          in
-          pkgs.mkShell {
-            name = "nix-config";
-            packages = with pkgs; [
-              nil
-              statix
-              nixfmt-rfc-style
-            ];
-          };
-        x86_64-darwin.default =
-          let
-            pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-          in
-          pkgs.mkShell {
-            name = "nix-config";
-            packages = with pkgs; [
-              nil
-              statix
-              nixfmt-rfc-style
-            ];
-            shellHook = ''
-              ssh-add -D
-              ssh-add ~/.ssh/kleis-gh
-            '';
-          };
+
+        modules = [
+          home-manager.darwinModules.home-manager
+          stylix.darwinModules.stylix
+
+          (
+            { lib, config, ... }:
+            {
+              nix = {
+                registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+                nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+              };
+            }
+          )
+
+          ./options.nix
+          ./hosts/excalibur.nix
+          ./excalibur-home-manager.nix
+        ];
       };
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages."${system}";
+        in
+        {
+          default = pkgs.mkShell {
+            name = "nix-config";
+            packages = with pkgs; [
+              nil
+              statix
+              nixfmt-rfc-style
+            ];
+          };
+        }
+      );
     };
 }
