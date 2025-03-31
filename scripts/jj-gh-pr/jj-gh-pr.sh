@@ -47,5 +47,6 @@ exit 1;
 }
 
 gh pr create -f \
+  --draft \
   --head "$BOOKMARK" \
   --base "$BASE"
