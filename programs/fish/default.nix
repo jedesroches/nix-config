@@ -1,4 +1,7 @@
 { pkgs, ... }:
+# TODO: try out the starship prompt.
+# https://gitlab.com/lanastara_foss/starship-jj
+# https://github.com/starship/starship
 
 {
   programs.fish = {

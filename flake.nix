@@ -18,21 +18,39 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
 
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    stylix.url = "github:danth/stylix/release-24.11";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-secrets = {
+      url = "git+ssh://git@github.com/jedesroches/nix-secrets.git?ref=main";
+      flake = false;
+    };
+
+    stylix = {
+      url = "github:danth/stylix/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       self,
-      nix-darwin,
       home-manager,
+      nix-darwin,
+      nix-secrets,
+      sops-nix,
       stylix,
       nixpkgs,
       nixpkgs-unstable,
@@ -69,7 +87,25 @@
 
         modules = [
           home-manager.darwinModules.home-manager
+          sops-nix.darwinModules.sops
           stylix.darwinModules.stylix
+
+          (
+            { config, ... }:
+            {
+              sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+              sops.secrets = {
+                gh_token = {
+                  sopsFile = "${nix-secrets}/jde.yaml";
+                };
+              };
+
+              home-manager.users.jde.home.file."test" = {
+                enable = true;
+                text = config.sops.secrets.gh_token.path;
+              };
+            }
+          )
 
           (
             { lib, config, ... }:
