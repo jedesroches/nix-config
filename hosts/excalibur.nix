@@ -82,6 +82,9 @@
           Minute = 0;
         };
       };
+      linux-builder = {
+        enable = true;
+      };
     };
 
     security.pam.enableSudoTouchIdAuth = true;
