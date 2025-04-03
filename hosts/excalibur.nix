@@ -85,6 +85,9 @@
       linux-builder = {
         enable = true;
       };
+      extraOptions = ''
+        !include ${config.sops.secrets.nix_access_token.path}
+      '';
     };
 
     security.pam.enableSudoTouchIdAuth = true;

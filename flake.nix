@@ -98,6 +98,9 @@
                 gh_token = {
                   sopsFile = "${nix-secrets}/jde.yaml";
                 };
+                nix_access_token = {
+                  sopsFile = "${nix-secrets}/jde.yaml";
+                };
               };
 
               home-manager.users.jde.home.file."test" = {
