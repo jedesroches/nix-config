@@ -8,6 +8,8 @@
     enable = true;
     shellInit = "fish_vi_key_bindings";
     shellAbbrs = {
+      l = "ls";
+      ll = "ls -lh";
       mail = "neomutt";
     };
     functions = {
