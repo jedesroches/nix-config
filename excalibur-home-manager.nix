@@ -14,6 +14,7 @@
         ./programs/helix
         ./programs/jujutsu
         ./programs/mpv
+        ./programs/starship
         ./scripts/jj-gh-pr
         ./scripts/sbb
         ./scripts/newshell
