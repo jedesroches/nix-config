@@ -74,14 +74,12 @@
       overlays = {
         unstable = final: prev: {
           unstable = import nixpkgs-unstable {
-            system = final.system;
+            inherit (final) system;
             config.allowUnfree = true;
           };
         };
 
-        starship-jj = final: prev: {
-          starship-jj = starship-jj.packages."${prev.system}".starship-jj;
-        };
+        starship-jj = final: prev: { inherit (starship-jj.packages."${prev.system}") starship-jj; };
       };
 
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
@@ -102,22 +100,16 @@
           sops-nix.darwinModules.sops
           stylix.darwinModules.stylix
 
+          # SOPS
           (
             { config, ... }:
             {
               sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
               sops.secrets = {
-                gh_token = {
-                  sopsFile = "${nix-secrets}/jde.yaml";
-                };
                 nix_access_token = {
+                  owner = config.me.username;
                   sopsFile = "${nix-secrets}/jde.yaml";
                 };
-              };
-
-              home-manager.users.jde.home.file."test" = {
-                enable = true;
-                text = config.sops.secrets.gh_token.path;
               };
             }
           )

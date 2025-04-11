@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home-manager = {
@@ -20,10 +20,16 @@
         ./scripts/newshell
       ];
 
-      nix.gc = {
-        automatic = true;
-        frequency = "weekly";
-        options = "--delete-older-than 7d";
+      nix = {
+        extraOptions = ''
+          keep-derivations = true
+          !include ${config.sops.secrets.nix_access_token.path}
+        '';
+        gc = {
+          automatic = true;
+          frequency = "weekly";
+          options = "--delete-older-than 7d";
+        };
       };
 
       programs = {
