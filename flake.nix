@@ -64,11 +64,6 @@
     }:
     let
       darwin = "x86_64-darwin";
-      architectures = [
-        darwin
-        "x86_64-linux"
-      ];
-      forAllSystems = nixpkgs.lib.genAttrs architectures;
     in
     {
       overlays = {
@@ -129,22 +124,5 @@
           ./excalibur-home-manager.nix
         ];
       };
-
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages."${system}";
-        in
-        {
-          default = pkgs.mkShell {
-            name = "nix-config";
-            packages = with pkgs; [
-              nil
-              statix
-              nixfmt-rfc-style
-            ];
-          };
-        }
-      );
     };
 }
