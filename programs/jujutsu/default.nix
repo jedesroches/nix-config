@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    difftastic
-    unstable.jjui
-  ];
+  home.packages = with pkgs; [ difftastic ];
   programs = {
     jujutsu = {
       enable = true;
