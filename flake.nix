@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    starship-jj = {
+      url = "gitlab:jedesroches/starship-jj";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-secrets = {
       url = "git+ssh://git@github.com/jedesroches/nix-secrets.git?ref=main";
       flake = false;
@@ -50,6 +55,7 @@
       home-manager,
       nix-darwin,
       nix-secrets,
+      starship-jj,
       sops-nix,
       stylix,
       nixpkgs,
@@ -65,10 +71,16 @@
       forAllSystems = nixpkgs.lib.genAttrs architectures;
     in
     {
-      overlays.unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          system = final.system;
-          config.allowUnfree = true;
+      overlays = {
+        unstable = final: prev: {
+          unstable = import nixpkgs-unstable {
+            system = final.system;
+            config.allowUnfree = true;
+          };
+        };
+
+        starship-jj = final: prev: {
+          starship-jj = starship-jj.packages."${prev.system}".starship-jj;
         };
       };
 
@@ -82,7 +94,7 @@
 
         pkgs = import nixpkgs {
           system = darwin;
-          overlays = [ self.overlays.unstable ];
+          overlays = nixpkgs.lib.mapAttrsToList (_: value: value) self.overlays;
         };
 
         modules = [
