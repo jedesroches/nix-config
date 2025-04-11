@@ -33,19 +33,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    systems = {
+      url = "path:./flake-systems.nix";
+      flake = false;
+    };
+
     starship-jj = {
-      url = "gitlab:jedesroches/starship-jj";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+file:///Users/jde/Documents/starship-jj";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
     };
 
     nix-secrets = {
       url = "git+ssh://git@github.com/jedesroches/nix-secrets.git?ref=main";
       flake = false;
-    };
-
-    stylix = {
-      url = "github:danth/stylix/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -57,14 +58,10 @@
       nix-secrets,
       starship-jj,
       sops-nix,
-      stylix,
       nixpkgs,
       nixpkgs-unstable,
       ...
     }:
-    let
-      darwin = "x86_64-darwin";
-    in
     {
       overlays = {
         unstable = final: prev: {
@@ -82,47 +79,53 @@
       #   modules = [ ];
       # };
 
-      darwinConfigurations."excalibur" = nix-darwin.lib.darwinSystem {
-        system = darwin;
+      darwinConfigurations."excalibur" =
+        let
+          system = "x86_64-darwin";
+        in
+        nix-darwin.lib.darwinSystem {
+          inherit system;
 
-        pkgs = import nixpkgs {
-          system = darwin;
-          overlays = nixpkgs.lib.mapAttrsToList (_: value: value) self.overlays;
-        };
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = nixpkgs.lib.mapAttrsToList (_: value: value) self.overlays;
+          };
 
-        modules = [
-          home-manager.darwinModules.home-manager
-          sops-nix.darwinModules.sops
-          stylix.darwinModules.stylix
+          modules = [
+            # "imports"
+            home-manager.darwinModules.home-manager
+            sops-nix.darwinModules.sops
 
-          # SOPS
-          (
-            { config, ... }:
-            {
-              sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-              sops.secrets = {
-                nix_access_token = {
-                  owner = config.me.username;
-                  sopsFile = "${nix-secrets}/jde.yaml";
+            # SOPS
+            (
+              { config, ... }:
+              {
+                sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+                sops.secrets = {
+                  nix_access_token = {
+                    owner = config.me.username;
+                    sopsFile = "${nix-secrets}/jde.yaml";
+                  };
                 };
-              };
-            }
-          )
+              }
+            )
 
-          (
-            { lib, config, ... }:
-            {
-              nix = {
-                registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-                nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-              };
-            }
-          )
+            # Nix registry & NIX_PATH
+            (
+              { lib, config, ... }:
+              {
+                nix = {
+                  registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+                  nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+                };
+              }
+            )
 
-          ./options.nix
-          ./hosts/excalibur.nix
-          ./excalibur-home-manager.nix
-        ];
-      };
+            # My modules
+            ./options.nix
+            ./hosts/excalibur.nix
+            ./excalibur-home-manager.nix
+          ];
+        };
     };
 }
