@@ -45,7 +45,8 @@
 
     starship-jj = {
       url = "git+file:///Users/jde/Documents/starship-jj";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; XXX: we need unstable until buildRustPackage uses
+      # a version of cargo-auditable that recognizes 2024 edition.
       inputs.systems.follows = "systems";
     };
 
@@ -77,7 +78,11 @@
           };
         };
 
-        starship-jj = final: prev: { inherit (starship-jj.packages."${prev.system}") starship-jj; };
+        starship-jj = final: prev: {
+          starship-jj = starship-jj.packages."${prev.system}".starship-jj.overrideAttrs {
+            RUSTFLAGS = "-Ctarget-cpu=native";
+          };
+        };
       };
 
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
