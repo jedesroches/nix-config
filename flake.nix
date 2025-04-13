@@ -95,6 +95,7 @@
             # "imports"
             home-manager.darwinModules.home-manager
             sops-nix.darwinModules.sops
+            (import ./cachix.nix)
 
             # SOPS
             (
