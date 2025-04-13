@@ -38,6 +38,11 @@
       flake = false;
     };
 
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+
     starship-jj = {
       url = "git+file:///Users/jde/Documents/starship-jj";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +58,7 @@
   outputs =
     inputs@{
       self,
+      flake-utils,
       home-manager,
       nix-darwin,
       nix-secrets,
@@ -81,7 +87,7 @@
 
       darwinConfigurations."excalibur" =
         let
-          system = "x86_64-darwin";
+          system = flake-utils.lib.system.x86_64-darwin;
         in
         nix-darwin.lib.darwinSystem {
           inherit system;
