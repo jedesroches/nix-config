@@ -2,9 +2,7 @@
 
 {
   home = {
-    packages = with pkgs; [
-      starship-jj
-    ];
+    packages = with pkgs; [ starship-jj ];
     file.starship-jj-config = {
       target = "Library/Application Support/starship-jj/starship-jj.toml";
       source = ./starship-jj.toml;
@@ -47,6 +45,9 @@
         repeat = true;
         repeat_offset = 1;
         format = "[$symbol]($style) ";
+      };
+      terraform = {
+        format = "[$symbol$workspace]($style) ";
       };
     };
   };
