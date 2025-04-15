@@ -28,7 +28,7 @@ BOOKMARK=$(jj bookmark list \
 
 
 BASE=$(jj bookmark list \
-  -r "heads((..$CHANGEID ~ $CHANGEID) & tracked_remote_bookmarks())" \
+  -r "heads((..$CHANGEID ~ $CHANGEID) & remote_bookmarks())" \
   -T 'self.name()' \
   --ignore-working-copy
 )
