@@ -24,13 +24,16 @@
         format = "$output";
         when = "jj root --ignore-working-copy";
       };
+      directory = {
+        fish_style_pwd_dir_length = 1;
+      };
       git_branch.disabled = true;
       git_commit.disabled = true;
       git_state.disabled = true;
       git_metrics.disabled = true;
       git_status.disabled = true;
-      directory = {
-        fish_style_pwd_dir_length = 1;
+      golang = {
+        format = "[$symbol]($style)";
       };
       nix_shell = {
         format = "[$symbol]($style) ";
