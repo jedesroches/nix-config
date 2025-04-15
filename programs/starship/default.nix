@@ -38,6 +38,9 @@
         impure_msg = "";
         pure_msg = "";
       };
+      ruby = {
+        format = "[$symbol$version]($style) ";
+      };
       shlvl = {
         disabled = false;
         symbol = "⅄";
