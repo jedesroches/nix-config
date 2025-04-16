@@ -1,9 +1,0 @@
-keys:
-  - &jde-excalibur age13c8zz5vh0syjjn5hsluve3l2fndpqzl30sya2a8j0z43tdc7r4vqz2sdvk
-  - &excalibur age1zxuwa83awqugj6ffj0l07fq7sjwmfw6f34tard9yx8cq8qxvmsjsn9vvsq
-creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml)$
-    key_groups:
-    - age:
-        - *jde-excalibur
-        - *excalibur
