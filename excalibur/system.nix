@@ -7,6 +7,7 @@
 {
 
   imports = [
+    ../common/system.nix
     ../services/jankyborders
     ../services/sketchybar
     ../services/skhd
@@ -64,33 +65,12 @@
     };
 
     nixpkgs.hostPlatform = "x86_64-darwin";
-    nix = {
-      optimise.automatic = true;
-      settings = {
-        experimental-features = "nix-command flakes";
-        trusted-users = [
-          "root"
-          config.me.username
-        ];
-      };
-      gc = {
-        automatic = true;
-        options = "--delete-older-than 30d";
-        interval = {
-          Weekday = 7;
-          Hour = 1;
-          Minute = 0;
-        };
-      };
-      linux-builder = {
-        enable = true;
-      };
-      extraOptions = ''
-        !include ${config.sops.secrets.nix_access_token.path}
-      '';
-    };
 
     security.pam.enableSudoTouchIdAuth = true;
+
+    # play around with linux VM builders.
+    # should this go in the corresponding flake ?
+    nix.linux-builder.enable = true;
 
     users = {
       knownUsers = [ config.me.username ];

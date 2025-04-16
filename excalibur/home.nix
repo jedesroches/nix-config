@@ -6,45 +6,16 @@
     useUserPackages = true;
     users.jde = {
       imports = [
-        ./programs/alacritty
-        ./programs/direnv
-        ./programs/fish
-        ./programs/git
-        ./programs/gh
-        ./programs/helix
-        ./programs/jujutsu
-        ./programs/mpv
-        ./programs/starship
-        ./scripts/jj-gh-pr
-        ./scripts/sbb
-        ./scripts/newshell
+        ../common/home.nix
       ];
 
-      programs = {
-        bat.enable = true;
-        home-manager.enable = true;
-        nix-index.enable = true;
-      };
+      programs.git.userEmail = "jodesroches@pictet.com";
 
       home = {
         stateVersion = "24.11"; # XXX DNE - RTFM.
-        file.hushlogin = {
-          enable = true;
-          target = ".hushlogin";
-          text = "hush";
-        };
 
         packages = with pkgs; [
-          ack
-          bash-language-server
-          jq
-          mpv
-          nil
-          nixfmt-rfc-style
-          shellcheck
-          statix
           terraform-ls
-          yaml-language-server
           (writeShellApplication {
             name = "cycle-ssh";
             text = ''

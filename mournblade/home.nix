@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../common/home.nix
     ../programs/zathura
   ];
   config = {
@@ -26,7 +27,6 @@
             scrot # Screenshots
             shotwell # Picture library manager
             qrencode # Share stuff using qrcodes
-            qrcp # wifi transfer of files
             xclip # Xorg clipboard manipulation
             jetbrains.idea-ultimate
 
@@ -37,19 +37,10 @@
             pandoc
             texliveFull
 
-            # Non project-specific Programming
-            nil # Nix LS
-            nixfmt-rfc-style # Nix formatter
-            nodePackages.bash-language-server
-            shellcheck
-
             # CLI utilities
-            ack # grep but better
             linux-wifi-hotspot
             ffmpeg # Video processing
-            file # Magic file detector
             jpegoptim # Image optimizer
-            jq # JSON
             lsof # List Open Files
             mtr # network info
             tig # Git cli browser
