@@ -2,7 +2,7 @@
 
 {
   home = {
-    packages = with pkgs; [ starship-jj ];
+    # packages = with pkgs; [ starship-jj ];
     file.starship-jj-config = {
       target = "Library/Application Support/starship-jj/starship-jj.toml";
       source = ./starship-jj.toml;
@@ -11,39 +11,31 @@
   programs.starship = {
     enable = true;
     settings = {
-      format = "$directory$\{custom.jj\}$all";
-      character = {
-        format = "$symbol ";
-      };
+      format = "$directory\${custom.jj}$all";
+      character = { format = "$symbol "; };
       cmd_duration = {
         min_time = 5000;
-        format = "[\($duration\)]($style) ";
+        format = "[($duration)]($style) ";
       };
-      custom.jj = {
-        command = "starship-jj --ignore-working-copy starship prompt";
-        format = "$output";
-        when = "jj root --ignore-working-copy";
-      };
-      directory = {
-        fish_style_pwd_dir_length = 1;
-      };
+      # custom.jj = {
+      #   command = "starship-jj --ignore-working-copy starship prompt";
+      #   format = "$output";
+      #   when = "jj root --ignore-working-copy";
+      # };
+      directory = { fish_style_pwd_dir_length = 1; };
       git_branch.disabled = true;
       git_commit.disabled = true;
       git_state.disabled = true;
       git_metrics.disabled = true;
       git_status.disabled = true;
-      golang = {
-        format = "[$symbol]($style)";
-      };
+      golang = { format = "[$symbol]($style)"; };
       nix_shell = {
         format = "[$symbol]($style) ";
         symbol = "❄️";
         impure_msg = "";
         pure_msg = "";
       };
-      ruby = {
-        format = "[$symbol$version]($style) ";
-      };
+      ruby = { format = "[$symbol$version]($style) "; };
       shlvl = {
         disabled = false;
         symbol = "⅄";
@@ -52,9 +44,7 @@
         repeat_offset = 1;
         format = "[$symbol]($style) ";
       };
-      terraform = {
-        format = "[$symbol$workspace]($style) ";
-      };
+      terraform = { format = "[$symbol$workspace]($style) "; };
     };
   };
 }
