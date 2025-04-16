@@ -4,7 +4,9 @@ _:
   programs.mpv = {
     enable = true;
     config = {
-      demuxer-max-bytes = "200000KiB";
+      cache = "yes";
+      demuxer-max-bytes = "1024Mib";
+      demuxer-readahead-secs = 20;
     };
   };
 }
