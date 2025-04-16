@@ -123,6 +123,7 @@
             )
 
             # Nix registry & NIX_PATH
+            # FIXME move to other file
             (
               { lib, config, ... }:
               {
@@ -135,8 +136,8 @@
 
             # My modules
             ./options.nix
-            ./hosts/excalibur.nix
-            ./excalibur-home-manager.nix
+            ./excalibur/home.nix
+            ./excalibur/system.nix
           ];
         };
     };
