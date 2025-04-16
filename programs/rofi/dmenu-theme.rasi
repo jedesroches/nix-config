@@ -1,0 +1,38 @@
+* {
+    background-color:      Black;
+    border-color:          Black;
+    text-color: rgb(242,242,242);
+    font: "Deja Vu Sans Mono 12";
+}
+window {
+    anchor:     north;
+    location:   north;
+    width:      100%;
+    padding:    4px;
+    children:   [ horibox ];
+}
+horibox {
+    orientation: horizontal;
+    children:   [ entry, listview ];
+}
+listview {
+    layout:     horizontal;
+    spacing:    5px;
+    lines:      100;
+}
+entry {
+    expand:     false;
+    width:      10em;
+}
+element {
+    padding: 0px 2px;
+}
+element selected {
+    background-color: rgb(255,135,0);
+    text-color: black;
+}
+
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
