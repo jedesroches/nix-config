@@ -33,7 +33,7 @@
 
         # Non project-specific Programming
         nil # Nix LS
-        nixfmt # Nix formatter
+        nixfmt-rfc-style # Nix formatter
         nodePackages.bash-language-server
         shellcheck
 
