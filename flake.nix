@@ -45,7 +45,7 @@
 
     starship-jj = {
       url = "git+file:///Users/jde/Documents/starship-jj";
-      # inputs.nixpkgs.follows = "nixpkgs"; XXX: we need unstable until buildRustPackage uses
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; # XXX: we need unstable until buildRustPackage uses
       # a version of cargo-auditable that recognizes 2024 edition.
       inputs.systems.follows = "systems";
     };
