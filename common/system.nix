@@ -5,6 +5,10 @@
   ...
 }:
 
+let
+  onlyLinux = lib.mkIf pkgs.stdenv.isLinux;
+  onlyDarwin = lib.mkIf pkgs.stdenv.isDarwin;
+in
 {
   nix = {
     optimise.automatic = true;
@@ -28,16 +32,16 @@
     '';
 
     gc = {
-      interval = lib.mkIf pkgs.stdenv.isDarwin {
+      interval = onlyDarwin {
         Weekday = 7;
         Hour = 1;
         Minute = 0;
       };
-      dates = lib.mkIf pkgs.stdenv.isLinux "weekly";
+      dates = onlyLinux "weekly";
 
       automatic = true;
-      persistent = true; # FIXME: find where it is stored and persist that
-      randomizedDelaySec = "5min";
+      persistent = onlyLinux true; # FIXME: find where it is stored and persist that
+      randomizedDelaySec = onlyLinux "5min";
       options = "--delete-older-than 30d";
     };
   };

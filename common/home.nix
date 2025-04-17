@@ -18,7 +18,7 @@
     ../scripts/sbb
   ];
   config = {
-    home-manager.users.${config.user} = {
+    home-manager.users.${config.me.username} = {
       programs = {
         bat.enable = true;
         home-manager.enable = true;
