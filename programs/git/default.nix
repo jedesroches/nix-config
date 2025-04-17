@@ -1,41 +1,48 @@
-_:
+{ config, ... }:
 
 {
-  programs = {
-    git = {
-      enable = true;
-      aliases = { unstage = "reset HEAD --"; };
-      extraConfig = {
-        commit.verbose = true;
-        core = {
-          autocrlf = "input";
-          quotepath = "off";
+  home-manager.users.${config.me.username} = {
+    programs = {
+      git = {
+        enable = true;
+        aliases = {
+          unstage = "reset HEAD --";
         };
-        push.autoSetupRemote = true;
-        pull.ff = "only";
-        init.defaultBranch = "main";
-        rebase.autoSquash = true;
+        extraConfig = {
+          commit.verbose = true;
+          core = {
+            autocrlf = "input";
+            quotepath = "off";
+          };
+          push.autoSetupRemote = true;
+          pull.ff = "only";
+          init.defaultBranch = "main";
+          rebase.autoSquash = true;
+        };
+        ignores = [
+          ".direnv/"
+          ".envrc"
+          ".local/"
+        ];
+        userName = "Joachim Desroches";
       };
-      ignores = [ ".direnv/" ".envrc" ".local/" ];
-      userName = "Joachim Desroches";
-    };
-    fish = {
-      shellAbbrs = {
-        ga = "git add";
-        gac = "git commit -a";
-        gap = "git add -p ";
-        gc = "git commit";
-        gd = "git diff";
-        gf = "git fetch";
-        gp = "git pull";
-        gpp = "git push";
-        gt = "git status";
+      fish = {
+        shellAbbrs = {
+          ga = "git add";
+          gac = "git commit -a";
+          gap = "git add -p ";
+          gc = "git commit";
+          gd = "git diff";
+          gf = "git fetch";
+          gp = "git pull";
+          gpp = "git push";
+          gt = "git status";
 
-      };
-      functions = {
-        gignore.body = ''for ign in $argv; echo "$ign" >> .gitignore; end '';
-        ginit.body =
-          ''git init . && git commit --allow-empty -m "Initial commit"'';
+        };
+        functions = {
+          gignore.body = ''for ign in $argv; echo "$ign" >> .gitignore; end '';
+          ginit.body = ''git init . && git commit --allow-empty -m "Initial commit"'';
+        };
       };
     };
   };
