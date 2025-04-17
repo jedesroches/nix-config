@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home-manager.users.${config.user} = {
+  home-manager.users.${config.me.username} = {
     home.packages = [ pkgs.qrcp ];
     xdg.configFile = {
       "qrcp/config.yml" = {
