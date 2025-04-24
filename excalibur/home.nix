@@ -16,6 +16,7 @@
           stateVersion = "24.11"; # XXX DNE - RTFM.
 
           packages = with pkgs; [
+            signal-desktop
             terraform-ls
             (writeShellApplication {
               name = "cycle-ssh";

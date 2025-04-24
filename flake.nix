@@ -100,6 +100,13 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = nixpkgs.lib.mapAttrsToList (_: value: value) self.overlays;
+            config = {
+              allowUnfreePredicate =
+                pkg:
+                builtins.elem (nixpkgs.lib.getName pkg) [
+                  "signal-desktop"
+                ];
+            };
           };
 
           modules = [
