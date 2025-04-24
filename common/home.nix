@@ -44,6 +44,7 @@
           # CLI utilities
           ack # grep but better
           file # Magic file detector
+          htop # system process monitoring
           jq # JSON
         ];
       };
