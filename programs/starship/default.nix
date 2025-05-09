@@ -25,9 +25,6 @@
           format = "$output";
           when = "jj root --ignore-working-copy";
         };
-        directory = {
-          fish_style_pwd_dir_length = 1;
-        };
         git_branch.disabled = true;
         git_commit.disabled = true;
         git_state.disabled = true;
@@ -42,16 +39,12 @@
           impure_msg = "";
           pure_msg = "";
         };
-        ruby = {
-          format = "[$symbol$version]($style) ";
+        package.disabled = true;
+        python = {
+          format = "[$symbol]$(style)";
         };
-        shlvl = {
-          disabled = false;
-          symbol = "⅄";
-          threshold = 2;
-          repeat = true;
-          repeat_offset = 1;
-          format = "[$symbol]($style) ";
+        ruby = {
+          format = "[$symbol]($style)";
         };
         terraform = {
           format = "[$symbol$workspace]($style) ";
