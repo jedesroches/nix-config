@@ -41,7 +41,7 @@
         };
         package.disabled = true;
         python = {
-          format = "[$symbol]$(style)";
+          format = "[$symbol]($style)";
         };
         ruby = {
           format = "[$symbol]($style)";
