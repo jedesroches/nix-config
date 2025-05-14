@@ -4,6 +4,8 @@
   imports = [
     ../common/home.nix
     ../programs/zathura
+    ../programs/rofi
+    ../programs/ssh
   ];
   config = {
     home-manager = {
