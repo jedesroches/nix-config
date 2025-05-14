@@ -8,6 +8,7 @@
     ../programs/ssh
   ];
   config = {
+    programs.i3lock.enable = true; # required for PAM config
     home-manager = {
       users.${config.me.username} = {
         programs.git.userEmail = "jdesroches@kleis.ch";
@@ -22,7 +23,6 @@
             # Desktop tools
             calibre # ebooks
             feh # Image viewer
-            i3lock # Screen lock
             imagemagick # magic for images
             libreoffice # office thingy
             poppler_utils # pdf manipulation tools
@@ -33,6 +33,7 @@
 
             # Communication tools
             whatsapp-for-linux
+            zoom-us
 
             # Documents
             pandoc
