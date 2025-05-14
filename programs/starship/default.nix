@@ -1,8 +1,13 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   home-manager.users.${config.me.username} = {
-    home = {
+    home = lib.mkIf pkgs.stdenv.isDarwin {
       packages = with pkgs; [ starship-jj ];
       file.starship-jj-config = {
         target = "Library/Application Support/starship-jj/starship-jj.toml";
@@ -20,7 +25,7 @@
           min_time = 5000;
           format = "[($duration)]($style) ";
         };
-        custom.jj = {
+        custom.jj = lib.mkIf pkgs.stdenv.isDarwin {
           command = "starship-jj --ignore-working-copy starship prompt";
           format = "$output";
           when = "jj root --ignore-working-copy";
