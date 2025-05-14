@@ -50,6 +50,9 @@
           htop # system process monitoring
           nethack # boring meetings
           jq # JSON
+
+          # For boring meetings
+          nethack
         ];
       };
     };
