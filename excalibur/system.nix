@@ -67,10 +67,16 @@
     nixpkgs.hostPlatform = "x86_64-darwin";
 
     security.pam.enableSudoTouchIdAuth = true;
-
-    # play around with linux VM builders.
-    # should this go in the corresponding flake ?
-    nix.linux-builder.enable = true;
+    nix = {
+      # play around with linux VM builders.
+      # should this go in the corresponding flake ?
+      linux-builder.enable = true;
+      gc.interval = {
+        Weekday = 7;
+        Hour = 1;
+        Minute = 0;
+      };
+    };
 
     users = {
       knownUsers = [ config.me.username ];
