@@ -28,7 +28,6 @@
             shotwell # Picture library manager
             qrencode # Share stuff using qrcodes
             xclip # Xorg clipboard manipulation
-            jetbrains.idea-ultimate
 
             # Communication tools
             whatsapp-for-linux
