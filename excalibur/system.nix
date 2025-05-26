@@ -18,12 +18,7 @@
     system = {
       stateVersion = 5; # See changelog before changing.
 
-      activationScripts.postUserActivation.text = ''
-        # activateSettings -u will reload the settings from the database and apply
-        # them to the current session, so we do not need to logout and login again
-        # to make the changes take effect.
-        /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-      '';
+      primaryUser = config.me.username;
 
       keyboard = {
         enableKeyMapping = true;
@@ -66,7 +61,7 @@
 
     nixpkgs.hostPlatform = "x86_64-darwin";
 
-    security.pam.enableSudoTouchIdAuth = true;
+    security.pam.services.sudo_local.touchIdAuth = true;
     nix = {
       # play around with linux VM builders.
       # should this go in the corresponding flake ?
