@@ -15,16 +15,16 @@
   description = "System configuration for my pro macbook";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
 
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -45,8 +45,7 @@
 
     starship-jj = {
       url = "git+file:///Users/jde/Documents/starship-jj";
-      inputs.nixpkgs.follows = "nixpkgs-unstable"; # XXX: we need unstable until buildRustPackage uses
-      # a version of cargo-auditable that recognizes 2024 edition.
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
 
@@ -84,10 +83,11 @@
           };
         };
 
-        node-build-fix = final: prev: {
-          nodejs = prev.nodejs_22;
-          nodejs-slim = prev.nodejs-slim_22;
-        };
+        # XXX this shouldn't be necessary anymore
+        # node-build-fix = final: prev: {
+        #   nodejs = prev.nodejs_22;
+        #   nodejs-slim = prev.nodejs-slim_22;
+        # };
       };
 
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
