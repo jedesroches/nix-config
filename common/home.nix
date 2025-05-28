@@ -34,6 +34,7 @@
         packages = with pkgs; [
           # Non project-specific Programming
           marksman # Markdown LS
+          mergiraf # Conflict resolution
           nil # Nix LS
           nixfmt-rfc-style # Nix formatter
           statix # Nix linter
