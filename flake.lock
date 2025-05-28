@@ -231,15 +231,14 @@
     "systems": {
       "flake": false,
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-SfMoEAAWOB+ncKKpEauZuwJs6hqd0bleFFl6wunta6k=",
         "path": "./flake-systems.nix",
         "type": "path"
       },
       "original": {
         "path": "./flake-systems.nix",
         "type": "path"
-      }
+      },
+      "parent": []
     }
   },
   "root": "root",
