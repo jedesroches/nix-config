@@ -46,6 +46,7 @@
           ack # grep but better
           file # Magic file detector
           htop # system process monitoring
+          nethack # boring meetings
           jq # JSON
         ];
       };
