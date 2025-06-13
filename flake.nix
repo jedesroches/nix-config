@@ -82,12 +82,6 @@
             RUSTFLAGS = "-Ctarget-cpu=native";
           };
         };
-
-        # XXX this shouldn't be necessary anymore
-        # node-build-fix = final: prev: {
-        #   nodejs = prev.nodejs_22;
-        #   nodejs-slim = prev.nodejs-slim_22;
-        # };
       };
 
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
@@ -123,18 +117,6 @@
                     owner = config.me.username;
                     sopsFile = "${nix-secrets}/jde.yaml";
                   };
-                };
-              }
-            )
-
-            # Nix registry & NIX_PATH
-            # FIXME move to other file
-            (
-              { lib, config, ... }:
-              {
-                nix = {
-                  registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-                  nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
                 };
               }
             )
