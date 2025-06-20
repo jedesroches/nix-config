@@ -56,7 +56,7 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       flake-utils,
       home-manager,
@@ -98,6 +98,7 @@
 
           pkgs = import nixpkgs {
             inherit system;
+            config.allowUnfree = true;
             overlays = nixpkgs.lib.mapAttrsToList (_: value: value) self.overlays;
           };
 

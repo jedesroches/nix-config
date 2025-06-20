@@ -93,8 +93,30 @@
           }
 
           {
+            name = "hy";
+            grammar = "hy";
+            auto-format = true;
+            scope = "source.hy";
+            file-types = [ "hy" ];
+            comment-tokens = [ ";" ];
+            indent = {
+              tab-width = 2;
+              unit = "  ";
+            };
+          }
+
+          {
             name = "typst";
             auto-format = true;
+          }
+        ];
+        grammar = [
+          {
+            name = "hy";
+            source = {
+              git = "https://github.com/kwshi/tree-sitter-hy";
+              rev = "main";
+            };
           }
         ];
       };
