@@ -84,6 +84,11 @@
           }
 
           {
+            name = "toml";
+            auto-format = true;
+          }
+
+          {
             name = "python";
             auto-format = true;
             language-servers = [

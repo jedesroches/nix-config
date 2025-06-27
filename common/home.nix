@@ -33,13 +33,14 @@
 
         packages = with pkgs; [
           # Non project-specific Programming
+          bash-language-server # SH LS
           marksman # Markdown LS
           mergiraf # Conflict resolution
           nil # Nix LS
           nixfmt-rfc-style # Nix formatter
+          shellcheck # SH linter
           statix # Nix linter
-          bash-language-server # Sh LS
-          shellcheck # Sh linter
+          taplo # TOML LS
           yaml-language-server # YAML LS
 
           # CLI utilities
