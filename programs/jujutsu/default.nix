@@ -39,19 +39,14 @@
               };
             };
           };
-          git = {
-            push-bookmark-prefix = "jde/push-";
-          };
           ui = {
             default-command = "status";
-            diff = {
-              tool = [
-                "difft"
-                "--color=always"
-                "$left"
-                "$right"
-              ];
-            };
+            diff-formatter = [
+              "difft"
+              "--color=always"
+              "$left"
+              "$right"
+            ];
             movement = {
               edit = true;
             };
@@ -60,7 +55,6 @@
           merge-tools.vimdiff.merge-tool-edits-conflict-markers = true;
           revsets.log = "@ | ancestors(remote_bookmarks().., 2) | trunk()";
           templates = {
-            # NOTE: this requires jj > 0.25.0
             draft_commit_description = ''
               concat(
                 description,
@@ -71,6 +65,7 @@
                 "\nJJ: ignore-rest\n",
                 diff.git(),
               )'';
+            git_push_bookmark = "\"jde/push-\" ++ change_id.short()";
           };
         };
       };
