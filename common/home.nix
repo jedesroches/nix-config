@@ -14,6 +14,7 @@
     ../programs/qrcp
     ../programs/starship
     ../scripts/jj-gh-pr
+    ../scripts/jjm
     ../scripts/newshell
     ../scripts/sbb
   ];
