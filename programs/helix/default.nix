@@ -98,6 +98,11 @@
           }
 
           {
+            name = "haskell";
+            auto-format = true;
+          }
+
+          {
             name = "hy";
             grammar = "hy";
             auto-format = true;
