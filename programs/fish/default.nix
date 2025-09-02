@@ -18,10 +18,6 @@
           name = "z";
           src = pkgs.fishPlugins.z.src;
         }
-        {
-          name = "sponge";
-          src = pkgs.fishPlugins.sponge.src;
-        }
       ];
     };
   };
