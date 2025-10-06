@@ -63,9 +63,6 @@
 
     security.pam.services.sudo_local.touchIdAuth = true;
     nix = {
-      # play around with linux VM builders.
-      # should this go in the corresponding flake ?
-      linux-builder.enable = true;
       gc.interval = {
         Weekday = 7;
         Hour = 1;
