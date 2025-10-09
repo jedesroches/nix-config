@@ -16,6 +16,7 @@
           stateVersion = "24.11"; # XXX DNE - RTFM.
 
           packages = with pkgs; [
+            anki-bin
             terraform-ls
             (writeShellApplication {
               name = "cycle-ssh";
