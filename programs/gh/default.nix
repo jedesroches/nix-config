@@ -9,6 +9,21 @@
         settings = {
           smartFilteringAtLaunch = false;
           showAuthorIcons = false;
+          prSections = [
+            {
+              title = "My Pull Requests";
+              filters = "is:open author:@me";
+            }
+            {
+              title = "Needs My Review";
+              filters = "is:open review-requested:@me draft:false -author:app/dependabot";
+            }
+            {
+              title = "Dependency Upgrades";
+              filters = "is:open review-requested:@me draft:false author:app/dependabot";
+            }
+          ];
+          defaults.preview.width = 120;
           theme = {
             ui = {
               sectionsShowCount = true;
