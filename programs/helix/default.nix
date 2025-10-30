@@ -84,6 +84,11 @@
           }
 
           {
+            name = "dhall";
+            auto-format = true;
+          }
+
+          {
             name = "toml";
             auto-format = true;
           }
