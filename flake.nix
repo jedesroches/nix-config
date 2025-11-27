@@ -44,7 +44,8 @@
     };
 
     starship-jj = {
-      url = "git+file:///Users/jde/Documents/starship-jj";
+      url = "gitlab:lanastara_foss/starship-jj";
+      inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
