@@ -90,8 +90,8 @@
         "lastModified": 1747231484,
         "narHash": "sha256-ggKxoGkry1HeA94wmmTJK29fRLavAqtx3v8ZPIXRXQg=",
         "ref": "main",
-        "rev": "e65bd33e8299727256a6fe9b79664bee6853ead1",
-        "revCount": 9,
+        "rev": "42a33a13890b534f3a8b8f1625fae7dd516ea962",
+        "revCount": 10,
         "type": "git",
         "url": "ssh://git@github.com/jedesroches/nix-secrets.git"
       },
