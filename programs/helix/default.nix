@@ -40,6 +40,10 @@
           G = "goto_file_end";
           space.w = ":w";
           space.q = ":q";
+          "\\" = {
+            f = ":reflow";
+            space = ":toggle whitespace.render all none";
+          };
         };
       };
       languages = {

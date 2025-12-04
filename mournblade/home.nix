@@ -26,14 +26,14 @@
             imagemagick # magic for images
             libreoffice # office thingy
             pdfpc # present slides
-            poppler_utils # pdf manipulation tools
+            poppler-utils # pdf manipulation tools
             scrot # Screenshots
             shotwell # Picture library manager
             qrencode # Share stuff using qrcodes
             xclip # Xorg clipboard manipulation
 
             # Communication tools
-            whatsapp-for-linux
+            wasistlos
             zoom-us
 
             # Documents
