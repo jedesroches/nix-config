@@ -25,6 +25,7 @@
             feh # Image viewer
             imagemagick # magic for images
             libreoffice # office thingy
+            pdfpc # present slides
             poppler_utils # pdf manipulation tools
             scrot # Screenshots
             shotwell # Picture library manager
@@ -100,6 +101,21 @@
                     xrandr --output "$externalscreen" --auto;
                   done
                 xrandr --output eDP-1 --off
+              '';
+            })
+            (writeShellApplication {
+              name = "screen-mirror";
+              runtimeInputs = [
+                gawk
+                xorg.xrandr
+              ];
+              text = ''
+                xrandr | awk '!/eDP-1/ && / connected/ { print $1; }' |
+                  while read -r externalscreen;
+                  do
+                    xrandr --output eDP-1 --auto;
+                    xrandr --output "$externalscreen" --auto --same-as eDP-1;
+                  done
               '';
             })
             (writeShellApplication {
