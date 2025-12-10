@@ -66,6 +66,10 @@
               };
             };
           };
+          tofuls = {
+            command = "tofu-ls";
+            args = [ "serve" ];
+          };
         };
         language = [
           {
@@ -98,6 +102,14 @@
           }
 
           {
+            name = "hcl";
+            auto-format = true;
+            language-servers = [
+              "tofuls"
+            ];
+          }
+
+          {
             name = "hy";
             grammar = "hy";
             auto-format = true;
@@ -108,6 +120,14 @@
               tab-width = 2;
               unit = "  ";
             };
+          }
+
+          {
+            name = "tfvars";
+            auto-format = true;
+            language-servers = [
+              "tofuls"
+            ];
           }
 
           {
