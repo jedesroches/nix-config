@@ -11,7 +11,6 @@
     programs.i3lock.enable = true; # required for PAM config
     home-manager = {
       users.${config.me.username} = {
-        programs.git.userEmail = "jdesroches@kleis.ch";
 
         xdg.mimeApps = {
           enable = true;

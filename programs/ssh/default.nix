@@ -4,6 +4,7 @@
   home-manager.users.${config.me.username} = {
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "synokleis" = {
           hostname = "192.168.1.6";
@@ -12,6 +13,9 @@
         "kleisap" = {
           hostname = "192.168.1.2";
           user = "root";
+        };
+        "*" = {
+          forwardAgent = false;
         };
       };
     };

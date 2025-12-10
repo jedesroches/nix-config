@@ -1,30 +1,33 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   home-manager.users.${config.me.username} = {
     programs = {
       git = {
         enable = true;
-        aliases = {
-          unstage = "reset HEAD --";
-        };
-        extraConfig = {
-          commit.verbose = true;
-          core = {
-            autocrlf = "input";
-            quotepath = "off";
-          };
-          push.autoSetupRemote = true;
-          pull.ff = "only";
-          init.defaultBranch = "main";
-          rebase.autoSquash = true;
-        };
         ignores = [
           ".direnv/"
           ".envrc"
           ".local/"
         ];
-        userName = "Joachim Desroches";
+        settings = {
+          aliases = {
+            unstage = "reset HEAD --";
+          };
+          commit.verbose = true;
+          core = {
+            autocrlf = "input";
+            quotepath = "off";
+          };
+          init.defaultBranch = "main";
+          push.autoSetupRemote = true;
+          pull.ff = "only";
+          rebase.autoSquash = true;
+          user = {
+            name = "Joachim Desroches";
+            email = lib.mkDefault "jdesroches@kleis.ch";
+          };
+        };
       };
       fish = {
         shellAbbrs = {
