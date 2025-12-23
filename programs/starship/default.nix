@@ -7,17 +7,17 @@
 
 {
   home-manager.users.${config.me.username} = {
-    home = lib.mkIf pkgs.stdenv.isDarwin {
-      packages = with pkgs; [ starship-jj ];
-      file.starship-jj-config = {
-        target = "Library/Application Support/starship-jj/starship-jj.toml";
-        source = ./starship-jj.toml;
-      };
-    };
+    # home = lib.mkIf pkgs.stdenv.isDarwin {
+    # packages = with pkgs; [ starship-jj ];
+    # file.starship-jj-config = {
+    #   target = "Library/Application Support/starship-jj/starship-jj.toml";
+    #   source = ./starship-jj.toml;
+    # };
+    # };
     programs.starship = {
       enable = true;
       settings = {
-        format = "$directory\${custom.jj}$all";
+        format = "$directory$all";
         character = {
           format = "$symbol ";
         };
@@ -25,11 +25,11 @@
           min_time = 5000;
           format = "[($duration)]($style) ";
         };
-        custom.jj = lib.mkIf pkgs.stdenv.isDarwin {
-          command = "starship-jj --ignore-working-copy starship prompt";
-          format = "$output";
-          when = "jj root --ignore-working-copy";
-        };
+        # custom.jj = lib.mkIf pkgs.stdenv.isDarwin {
+        #   command = "starship-jj --ignore-working-copy starship prompt";
+        #   format = "$output";
+        #   when = "jj root --ignore-working-copy";
+        # };
         git_branch.disabled = true;
         git_commit.disabled = true;
         git_state.disabled = true;

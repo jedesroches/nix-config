@@ -1,7 +1,24 @@
 { pkgs, config, ... }:
 
+let
+  tomlFmt = pkgs.formats.toml { };
+in
 {
   home-manager.users.${config.me.username} = {
+    xdg.configFile."helix/snippets/python.toml" = {
+      source = tomlFmt.generate "python.toml" {
+        snippets = [
+          {
+            prefix = "def";
+            scope = [ "python" ]; # XXX is this necessary considering the file name ?
+            body = ''
+              def ''${1:fname}(''${2:arg}) -> ''${3:NotImplementedType}:
+                  ''${4:return NotImplemented}
+            '';
+          }
+        ];
+      };
+    };
     programs.helix = {
       enable = true;
       package = pkgs.unstable.helix;
@@ -44,18 +61,19 @@
       };
       languages = {
         language-server = {
-          # Fix for golangci-lint-langserver/issues/51
-          # Remove once #52 is merged.
-          golangci-lint-lsp = {
+          codebook = {
+            command = "codebook-lsp";
+            args = [ "serve" ];
+          };
+          scls = {
+            command = "simple-completion-language-server";
             config = {
-              command = [
-                "golangci-lint"
-                "run"
-                "--output.json.path"
-                "stdout"
-                "--show-stats=false"
-                "--issues-exit-code=1"
-              ];
+              feature_citations = false;
+              feature_paths = false;
+              feature_snippets = true;
+              feature_unicode_input = false;
+              feature_words = false;
+              snippets_first = false;
             };
           };
           nil = {
@@ -91,6 +109,10 @@
           {
             name = "toml";
             auto-format = true;
+            language-servers = [
+              "taplo"
+              "codebook"
+            ];
           }
 
           {
@@ -99,12 +121,18 @@
             language-servers = [
               "basedpyright"
               "ruff"
+              "codebook"
+              "scls"
             ];
           }
 
           {
             name = "haskell";
             auto-format = true;
+            language-servers = [
+              "haskell-language-server"
+              "codebook"
+            ];
           }
 
           {
@@ -123,6 +151,10 @@
           {
             name = "typst";
             auto-format = true;
+            language-servers = [
+              "codebook"
+              "tinymist"
+            ];
           }
         ];
         grammar = [

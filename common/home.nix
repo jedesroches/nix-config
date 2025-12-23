@@ -36,6 +36,7 @@
           # Non project-specific Programming
           bash-language-server # SH LS
           codebook # Spelling LS
+          simple-completion-language-server # Snippets LS
           marksman # Markdown LS
           mergiraf # Conflict resolution
           nil # Nix LS

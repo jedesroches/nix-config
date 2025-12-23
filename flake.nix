@@ -15,16 +15,16 @@
   description = "System configuration for my pro macbook";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
 
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,12 +43,12 @@
       inputs.systems.follows = "systems";
     };
 
-    starship-jj = {
-      url = "gitlab:lanastara_foss/starship-jj";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-    };
+    # starship-jj = {
+    #   url = "gitlab:lanastara_foss/starship-jj";
+    #   inputs.flake-utils.follows = "flake-utils";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.systems.follows = "systems";
+    # };
 
     nix-secrets = {
       url = "git+ssh://git@github.com/jedesroches/nix-secrets.git?ref=main";
@@ -63,7 +63,7 @@
       home-manager,
       nix-darwin,
       nix-secrets,
-      starship-jj,
+      # starship-jj,
       sops-nix,
       nixpkgs,
       nixpkgs-unstable,
@@ -78,11 +78,11 @@
           };
         };
 
-        starship-jj = final: prev: {
-          starship-jj = starship-jj.packages."${prev.system}".starship-jj.overrideAttrs {
-            RUSTFLAGS = "-Ctarget-cpu=native";
-          };
-        };
+        # starship-jj = final: prev: {
+        #   starship-jj = starship-jj.packages."${prev.system}".starship-jj.overrideAttrs {
+        #     RUSTFLAGS = "-Ctarget-cpu=native";
+        #   };
+        # };
       };
 
       # nixosConfigurations."mourneblade" = nixpkgs.lib.nixosSystem {
