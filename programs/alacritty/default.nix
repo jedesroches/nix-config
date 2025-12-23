@@ -8,7 +8,7 @@
     programs.alacritty = {
       enable = true;
       settings = {
-        window.decorations = "none";
+        # window.decorations = "none";
         font = {
           size = 14;
           normal = {

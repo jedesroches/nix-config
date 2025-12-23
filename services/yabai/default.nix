@@ -6,7 +6,7 @@ _:
 
 {
   services.yabai = {
-    enable = true;
+    enable = false;
     config = {
       active_window_opacity = 1.0;
       external_bar = "all:20:0";
