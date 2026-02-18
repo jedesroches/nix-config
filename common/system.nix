@@ -1,9 +1,14 @@
 {
   config,
+  pkgs,
   ...
 }:
 
 {
+  fonts.packages = with pkgs; [
+    roboto # I like this font
+    inter # font used for work
+  ];
   nix = {
     optimise.automatic = true;
 
