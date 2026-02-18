@@ -13,6 +13,13 @@
       users.${config.me.username} = {
         programs.git.userEmail = "jdesroches@kleis.ch";
 
+        xdg.mimeApps = {
+          enable = true;
+          defaultApplicationPackages = with pkgs; [
+            libreoffice
+          ];
+        };
+
         home.packages = (
           with pkgs;
           [
