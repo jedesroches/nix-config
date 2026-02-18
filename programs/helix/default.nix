@@ -35,6 +35,11 @@
         };
         keys.insert = {
           C-n = "completion";
+          C-k = "kill_to_line_end";
+        };
+        keys.select = {
+          G = "extend_to_file_end";
+          X = "extend_to_line_end";
         };
         keys.normal = {
           G = "goto_file_end";
@@ -42,6 +47,7 @@
           space.q = ":q";
           "\\" = {
             f = ":reflow";
+            F = ":format";
             space = ":toggle whitespace.render all none";
           };
         };
@@ -99,6 +105,17 @@
           {
             name = "haskell";
             auto-format = true;
+          }
+
+          {
+            name = "racket";
+            auto-format = true;
+            auto-pairs = {
+              "(" = ")";
+              "[" = "]";
+              "{" = "}";
+              "\"" = "\"";
+            };
           }
 
           {
