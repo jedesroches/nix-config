@@ -54,6 +54,10 @@
       };
       languages = {
         language-server = {
+          zk = {
+            command = "zk";
+            args = [ "lsp" ];
+          };
           nil = {
             command = "nil";
             config = {
@@ -124,6 +128,13 @@
             language-servers = [
               "tofuls"
             ];
+          }
+
+          {
+            name = "markdown";
+            auto-format = true;
+            language-servers = [ "zk" ];
+            roots = [ ".zk" ];
           }
 
           {

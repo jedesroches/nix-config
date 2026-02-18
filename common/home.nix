@@ -13,6 +13,7 @@
     ../programs/nix
     ../programs/qrcp
     ../programs/starship
+    ../programs/zk
     ../scripts/jj-gh-pr
     ../scripts/jjm
     ../scripts/newshell
@@ -36,7 +37,6 @@
           # Non project-specific Programming
           bash-language-server # SH LS
           codebook # Spelling LS
-          marksman # Markdown LS
           mergiraf # Conflict resolution
           nil # Nix LS
           nixfmt-rfc-style # Nix formatter
